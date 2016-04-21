@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from bs4 import BeautifulSoup
 from collections import Counter
 from scrapy.contrib.loader import ItemLoader
 from googlefinance import getNews
