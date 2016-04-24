@@ -10,10 +10,19 @@ class NewsGoogleFinanceSpider(scrapy.Spider):
     name = "news_google_finance"
     symbols = ['NASDAQ:PYPL', 'NYSE:SQ', 'NYSE:V', 'NYSE:MA']
 
+    startdate1 = ''
+    enddate1 = ''
+
+    def __init__(self, startdate='', enddate='',*args, **kwargs):
+        global startdate1
+        global enddate1
+        startdate1 = startdate
+        enddate1 = enddate
+
     def start_requests(self):
     	for symbol in self.symbols:
     		#stock = getQuotes(symbol)
-    		news = getNews(symbol)
+    		news = getNews(symbol,startdate1,enddate1)
     		for article in news:
     			if "hour" in article['d']:
     				yield scrapy.Request(article['u'], self.parse)
